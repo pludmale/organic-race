@@ -83,8 +83,10 @@ namespace OrganicRace
 						Console.WriteLine("Invalid prosthetic.");
 					break;
 				case "add":
-					if (Program.AllProsthetics.ContainsKey(Subject))
-						Program.AllProsthetics[Subject].Add(Program.Player);
+					if (Program.AllProsthetics.ContainsKey(Object))
+						Program.AllProsthetics[Object].Add(Program.Player);
+					else if (Program.AllProsthetics.ContainsKey(Subject))
+							Program.AllProsthetics[Subject].Add(Program.Player);
 					else
 						Console.WriteLine("Invalid prosthetic, m8.");
 					break;
