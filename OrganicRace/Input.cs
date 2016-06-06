@@ -60,7 +60,7 @@ namespace OrganicRace
 		public void ProcessInput()
 		{
 			var unsoldOrgans = Program.AllOrgans.Where(entry => !entry.Value.IsSold).Select(entry => entry.Value.OrganName);
-			var boughtProsthetics = Program.AllProsthetics.Where(entry => entry.Value.IsAdded).Select(entry => entry.Value.ProstheticName);
+			var boughtProsthetics = Program.AllProsthetics.Where(entry => entry.Value.IsBought).Select(entry => entry.Value.ProstheticName);
 			var addedProsthetics = Program.AllProsthetics.Where(entry => entry.Value.IsBought && !entry.Value.IsAdded).Select(entry => entry.Value.ProstheticName);
 			var shopProstheticNames = Program.AllProsthetics.Where(entry => !entry.Value.IsBought).Select(entry => entry.Value.ProstheticName);
 			var shopProstheticPrices = Program.AllProsthetics.Where(entry => !entry.Value.IsBought).Select(entry => entry.Value.Price);
@@ -115,8 +115,6 @@ sell it for ${organ.Value.Price}, lose {organ.Value.Time} days of precious life.
 						Console.WriteLine("You have added the following temporary prosthetics to your body:" + String.Join(", ", boughtProsthetics) + ".");
 					if (addedProsthetics.Any())
 						Console.WriteLine("You have bought the following temporary prosthetics:" + String.Join(", ", addedProsthetics) + ".");
-					else
-						Console.WriteLine("You haven't bought any prosthetics yet! SHOP to see all available ones!");
 					break;
 				case "shop":
 					Console.WriteLine("You can buy the following temporary prosthetics:");
