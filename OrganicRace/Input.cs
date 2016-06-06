@@ -75,7 +75,9 @@ namespace OrganicRace
 						Console.WriteLine("Invalid organ.");
 					break;
 				case "buy":
-					if (Program.AllProsthetics.ContainsKey(Object) || (Program.AllProsthetics.ContainsKey(Subject) && Object == "prosthetic"))
+					if (Program.AllProsthetics.ContainsKey(Object))
+						(Program.AllProsthetics[Object]).Buy(Program.Player);
+					else if ((Program.AllProsthetics.ContainsKey(Subject) && Object == "prosthetic"))
 						(Program.AllProsthetics[Subject]).Buy(Program.Player);
 					else
 						Console.WriteLine("Invalid prosthetic.");
@@ -100,7 +102,13 @@ namespace OrganicRace
 					break;
 				case "body":
 					if (unsoldOrgans.Any())
-						Console.WriteLine("You have the following organs left in your body: " + String.Join(", ", unsoldOrgans) + ".");
+						Console.WriteLine("You have the following organs left in your body:");
+						foreach (var organ in Program.AllOrgans.Where(entry => !entry.Value.IsSold))
+							{
+						Console.WriteLine($@" - {organ.Value.OrganName} -
+sell it for ${organ.Value.Price}, lose {organ.Value.Time} days of precious life.
+");
+							}
 					if (boughtProsthetics.Any())
 						Console.WriteLine("You have added the following temporary prosthetics to your body:" + String.Join(", ", boughtProsthetics) + ".");
 					if (addedProsthetics.Any())
