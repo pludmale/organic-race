@@ -112,7 +112,7 @@ namespace OrganicRace
 					Console.WriteLine("You can buy the following temporary prosthetics:");
 					foreach (var item in Program.AllProsthetics.Where(entry => !entry.Value.IsBought)) {
 						Console.WriteLine($@"~~ {item.Value.ProstheticName} ~~
-will set you back {item.Value.Price} dollars with life expectancy of +{item.Value.Time} days, yoh yoh yoh
+will set you back {item.Value.Price} dollars with life expectancy of +{item.Value.Time} days,
 ");
 					}
 					break;
