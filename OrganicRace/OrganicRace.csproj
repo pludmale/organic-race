@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IUserInput.cs" />
     <Compile Include="OrganInventory.cs" />
     <Compile Include="Input.cs" />
     <Compile Include="Person.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Prosthetic.cs" />
     <Compile Include="ProstheticInventory.cs" />
+    <Compile Include="UserInput.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
