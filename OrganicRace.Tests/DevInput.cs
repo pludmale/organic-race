@@ -8,10 +8,11 @@ namespace OrganicRace.Tests
 {
 	public class DevInput : IUserInput
 	{
+		public string UserInput = "catch an error by the toe";
+
 		public string GetUserInput()
 		{
-			string prompt = "catch an error by the toe";
-			return prompt;
+			return this.UserInput;
 		}
 	}
 }
