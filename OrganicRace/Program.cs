@@ -72,13 +72,16 @@ BUY and ADD them to your body.");
 				{"lungs", prostheticInventory.ProstLungs},
 			};
 
-			//DOESN'T WORK FFS
-			bool allOrgansSold = !AllOrgans.Where(entry => !entry.Value.IsSold).Any();
-			bool allProstheticsAdded = !AllProsthetics.Where(entry => !entry.Value.IsAdded).Any();
+			//Checks for player selling all their organs and adding all prostheses.
+			bool allOrgansSold = false;
+			bool allProstheticsAdded = false;
 
 			//Game loop.
-			while ((allOrgansSold && allProstheticsAdded) || (Player.TimeLeft >= 0))
+			while (!(allOrgansSold && allProstheticsAdded) && (Player.TimeLeft >= 0))
 			{
+				allOrgansSold = AllOrgans.All(entry => entry.Value.IsSold);
+				allProstheticsAdded = AllProsthetics.All(entry => entry.Value.IsAdded);
+
 				Console.WriteLine("Next move?");
 				Input.UserPrompt();
 				Input.ProcessInput();
@@ -88,11 +91,13 @@ BUY and ADD them to your body.");
 			// ¯\_(ツ)_/¯
 			if (allOrgansSold && allProstheticsAdded)
 			{
-				Console.WriteLine($@"You live out your remaining {Player.TimeLeft} days in peace,
+				Console.WriteLine($@"
+You live out your remaining {Player.TimeLeft} days in peace,
 having acquired a generous donor reputation in the black organ market. Your mother would have been proud of you.");
 			}
 
-			if (Player.TimeLeft >= 0)
+			//(ง ͠° ͟ل͜ ͡°)ง
+			if (Player.TimeLeft <= 0)
 			{
 				Console.WriteLine($@"
 You have died!
