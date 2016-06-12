@@ -21,7 +21,10 @@ namespace OrganicRace
 			Player = new Person(10, 500m);
 
 			//Instantiating empty player input.
-			Input = new Input(null, null, null);
+			var userInput = new UserInput();
+
+			//Instantiating empty player input.
+			Input = new Input(null, null, null, userInput);
 
 			//Intro.
 			Console.WriteLine("Welcome to the Organic Race.");
@@ -36,9 +39,8 @@ BUY and ADD them to your body.");
 
 			/*
 			TO DO: 
-			Check for when all organs have been sold && all prosthetics have been added. 
-			When true, pat on the back, maybe some sort of financial conclusion (sth about bein a rich filthy motherfucker)
-			*/
+			
+			 */
 			
 			var organInventory = new OrganInventory();
 			AllOrgans = new Dictionary<string, Organ>

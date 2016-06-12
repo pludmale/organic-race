@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OrganicRace
+namespace OrganicRace.Tests
 {
-	public class UserInput : IUserInput
+	public class DevInput : IUserInput
 	{
-		public string GetUserInput ()
+		public string GetUserInput()
 		{
-			string prompt = Console.ReadLine().ToLower();
-
+			string prompt = "catch an error by the toe";
 			return prompt;
 		}
 	}

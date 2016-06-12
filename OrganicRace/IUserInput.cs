@@ -8,6 +8,6 @@ namespace OrganicRace
 {
 	public interface IUserInput
 	{
-		void GetUserInput(string action, string @object, string subject);
+		string GetUserInput();
 	}
 }

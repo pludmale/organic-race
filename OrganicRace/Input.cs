@@ -21,17 +21,20 @@ namespace OrganicRace
 		/// </summary>
 		public string Subject;
 
+		private IUserInput _userInput;
+
 		/// <summary>
 		/// Constructor.
 		/// </summary>
 		/// <param name="action">See <see cref="Action"/>.</param>
 		/// <param name="object">See <see cref="Object"/>.</param>
 		/// <param name="subject">See <see cref="Subject"/>.</param>
-		public Input(string action, string @object, string subject)
+		public Input(string action, string @object, string subject, IUserInput userInput)
 		{
 			this.Action = action;
 			this.Object = @object;
 			this.Subject = subject;
+			this._userInput = userInput;
 		}
 
 		/// <summary>
@@ -39,7 +42,7 @@ namespace OrganicRace
 		/// </summary>
 		public void UserPrompt()
 		{
-			string prompt = Console.ReadLine().ToLower();
+			var prompt = _userInput.GetUserInput();
 			string[] words = prompt.Split(' ');
 			words = words.Where(s => s != "the").ToArray();
 
