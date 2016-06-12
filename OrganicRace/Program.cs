@@ -79,24 +79,25 @@ BUY and ADD them to your body.");
 			//Game loop.
 			while (!(allOrgansSold && allProstheticsAdded) && (Player.TimeLeft >= 0))
 			{
-				allOrgansSold = AllOrgans.All(entry => entry.Value.IsSold);
-				allProstheticsAdded = AllProsthetics.All(entry => entry.Value.IsAdded);
-
 				Console.WriteLine("Next move?");
 				Input.UserPrompt();
 				Input.ProcessInput();
-				
+
+				allOrgansSold = AllOrgans.All(entry => entry.Value.IsSold);
+				allProstheticsAdded = AllProsthetics.All(entry => entry.Value.IsAdded);
 			}
 
-			// ¯\_(ツ)_/¯
+			//Retirement ending.
 			if (allOrgansSold && allProstheticsAdded)
 			{
 				Console.WriteLine($@"
 You live out your remaining {Player.TimeLeft} days in peace,
-having acquired a generous donor reputation in the black organ market. Your mother would have been proud of you.");
+having acquired a generous donor reputation in the black organ market.
+Even though you are mostly made of plastic and metal and can't really take care of yourself, 
+your mother would have been proud of you.");
 			}
 
-			//(ง ͠° ͟ل͜ ͡°)ง
+			//Death ending.
 			if (Player.TimeLeft <= 0)
 			{
 				Console.WriteLine($@"
@@ -110,7 +111,8 @@ You've ended the game with ${Player.Money}.");
 					Console.WriteLine("Your offspring will be grateful for the fortune you have left behind.");
 			}
 
-			Console.WriteLine("Thank you for playing the Organic Race!");
+			Console.WriteLine(@"
+Thank you for playing the Organic Race!");
 			Console.ReadKey();
 		}
 	}
