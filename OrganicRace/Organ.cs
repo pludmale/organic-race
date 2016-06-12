@@ -56,27 +56,19 @@ namespace OrganicRace
 		/// <param name="Player"></param>
 		public void Sell(Person Player)
 		{
-			this.IsSold = true;
-			Player.TimeLeft = Player.TimeLeft + (this.Time) - 1;
-			Player.Money = Player.Money + (this.Price);
-			Console.WriteLine($@"You have sold your {this.OrganName} for ${this.Price}.
+			if (!this.IsSold)
+			{
+				this.IsSold = true;
+				Player.TimeLeft = Player.TimeLeft + (this.Time) - 1;
+				Player.Money = Player.Money + (this.Price);
+				Console.WriteLine($@"You have sold your {this.OrganName} for ${this.Price}.
 The operation took 1 day.
 You now have {Player.TimeLeft} days left to live.
 You have ${Player.Money} now.");
-		}
-
-		/// <summary>
-		/// Gives the player stats for a selected unsold organ.
-		/// </summary>
-		public void Check()
-		{
-			if (!this.IsSold)
+			}
+			else
 			{
-				Console.WriteLine($@"You can sell your {this.OrganName} for ${this.Price}.
-Your life expectancy will drop by {this.Time} if you do this.");
-			} else
-			{
-				Console.WriteLine($"You've already sold your {this.OrganName}!");
+				Console.WriteLine($"You've already sold your {this.OrganName}.");
 			}
 		}
 	}

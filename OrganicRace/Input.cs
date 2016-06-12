@@ -90,12 +90,6 @@ namespace OrganicRace
 					else
 						Console.WriteLine("Invalid prosthetic, m8.");
 					break;
-				case "check":
-					if (Program.AllOrgans.ContainsKey(Object))
-						(Program.AllOrgans[Object]).Check();
-					else
-						Console.WriteLine("Invalid organ.");
-					break;
 				case "time":
 					Console.WriteLine($"You currently have {Program.Player.TimeLeft} days left to live.");
 					break;

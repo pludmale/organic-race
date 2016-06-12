@@ -31,16 +31,13 @@ You can replace essential organs with temporary prosthetics to increase life exp
 			Console.WriteLine(@"Type MONEY to check your bank account,
 BODY to check the state of your organs,
 TIME to see how many days you have left.
-You can also CHECK an organ to see it's price on the black market,
 SHOP for prosthetics, and
 BUY and ADD them to your body.");
 
 			/*
 			TO DO: 
-
-			Body check needs to move out of the ProcessInput() and get their own place somewhere in the game files.
-
-			Listen to more Prokofiev. Try "Dance of the Knights" please. It helps.
+			Check for when all organs have been sold && all prosthetics have been added. 
+			When true, pat on the back, maybe some sort of financial conclusion (sth about bein a rich filthy motherfucker)
 			*/
 			
 			var organInventory = new OrganInventory();
@@ -75,7 +72,12 @@ BUY and ADD them to your body.");
 				{"lungs", prostheticInventory.ProstLungs},
 			};
 
-			while (Player.TimeLeft > 0)
+			//DOESN'T WORK FFS
+			bool allOrgansSold = !AllOrgans.Where(entry => !entry.Value.IsSold).Any();
+			bool allProstheticsAdded = !AllProsthetics.Where(entry => !entry.Value.IsAdded).Any();
+
+			//Game loop.
+			while ((allOrgansSold && allProstheticsAdded) || (Player.TimeLeft >= 0))
 			{
 				Console.WriteLine("Next move?");
 				Input.UserPrompt();
@@ -83,15 +85,27 @@ BUY and ADD them to your body.");
 				
 			}
 
-			Console.WriteLine($@"
+			// ¯\_(ツ)_/¯
+			if (allOrgansSold && allProstheticsAdded)
+			{
+				Console.WriteLine($@"You live out your remaining {Player.TimeLeft} days in peace,
+having acquired a generous donor reputation in the black organ market. Your mother would have been proud of you.");
+			}
+
+			if (Player.TimeLeft >= 0)
+			{
+				Console.WriteLine($@"
 You have died!
 You've ended the game with ${Player.Money}.");
-			if (Player.Money < 1000m)
-				Console.WriteLine("You can barely afford cremation. Jeez.");
-			if (Player.Money >= 1000m || Player.Money < 5000m)
-				Console.WriteLine("You've landed yourself a hauntingly middle-class graveyard spot.");
-			if (Player.Money >= 5000m)
-				Console.WriteLine("Your offspring will be grateful for the fortune you have left behind.");
+				if (Player.Money < 1000m)
+					Console.WriteLine("You can barely afford cremation. Jeez.");
+				if (Player.Money >= 1000m || Player.Money < 5000m)
+					Console.WriteLine("You've landed yourself a hauntingly middle-class graveyard spot.");
+				if (Player.Money >= 5000m)
+					Console.WriteLine("Your offspring will be grateful for the fortune you have left behind.");
+			}
+
+			Console.WriteLine("Thank you for playing the Organic Race!");
 			Console.ReadKey();
 		}
 	}
