@@ -79,6 +79,13 @@ You have ${Player.Money}.");
 			{
 				Player.TimeLeft = Player.TimeLeft + (this.Time) - 1;
 				this.IsAdded = true;
+
+				if (Player.TimeLeft <= 0)
+				{
+					Console.WriteLine("Oh no!");
+					return;
+				}
+
 				Console.WriteLine($@"You've undergone the surgery to add {this.ProstheticName} to your body.
 One day has passed for the operation.
 You now have {Player.TimeLeft} days left to live.");

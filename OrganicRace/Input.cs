@@ -86,6 +86,9 @@ namespace OrganicRace
 						Console.WriteLine("Invalid prosthetic.");
 					break;
 				case "add":
+					//if (unsoldOrgans.Any())
+					//	Console.WriteLine("You can't replace an organ you haven't removed yet.");
+					//else if
 					if (Program.AllProsthetics.ContainsKey(Object))
 						Program.AllProsthetics[Object].Add(Program.Player);
 					else if (Program.AllProsthetics.ContainsKey(Subject))
